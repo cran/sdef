@@ -11,8 +11,8 @@ The package performs two tests to evaluate if the experiments are associated and
 \tabular{ll}{
 Package: \tab sdef\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2009-08-10\cr
+Version: \tab 1.1\cr
+Date: \tab 2009-08-17\cr
 License: \tab GPL-2\cr
 Lazyload: \tab yes\cr
 }

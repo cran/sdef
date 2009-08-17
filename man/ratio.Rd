@@ -51,9 +51,9 @@ data=1-data;
   }
 
 main="("
-for(i in 1:(length(lists)-1)){
+for(i in 1:(lists-1)){
 main=paste(main,"1,")
-  }
+}
 main=paste(main,"1)")
 
 
