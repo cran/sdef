@@ -73,6 +73,12 @@ if(output.ratio$pvalue==FALSE){
 table.max <- 1-table.max
 }
 
+if(is.matrix(table.max)==FALSE){
+table.max=as.matrix(table.max)
+table.max=t(table.max)
+}
+
+
 table.max <- data.frame(Names=names.max,RankingStat = table.max)
 colnames(table.max)<-name
 
@@ -89,6 +95,12 @@ names.2 <- gene.names[apply(temp,1,sum)==lists]
 
 if(output.ratio$pvalue==FALSE){
 table.2 <- 1-table.2
+}
+
+
+if(is.matrix(table.2)==FALSE){
+table.2=as.matrix(table.2)
+table.2=t(table.2)
 }
 
 

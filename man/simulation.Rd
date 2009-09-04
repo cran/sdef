@@ -6,7 +6,8 @@
 The function simulates two vectors of p-values using the procedure described in Hwang et al.
 }
 \usage{
-simulation(n, GammaA, GammaB, epsilonM = 0, epsilonSD = 1, r1, r2, DEfirst, DEsecond, DEcommon)
+simulation(n, GammaA, GammaB, epsilonM = 0,
+epsilonSD = 1, r1, r2, DEfirst, DEsecond, DEcommon)
 }
 \arguments{
   \item{n}{ \code{Number of features to simulate} }
@@ -34,13 +35,16 @@ Then, as described in Hwang et al., a two tails T-test is performed for each FC(
 \references{ Hwang D, Rust A, Ramsey S, Smith J, Leslie D, Weston A, de Atauri P, Aitchison J, Hood L, Siegel A, Bolouri H (2005): A data integration methodology for system biology. PNAS 2005.
 
 M.Blangiardo and S.Richardson (2007) Statistical tools for synthesizing lists of differentially expressed features in related experiments, Genome Biology, 8, R54. }
-\author{ Marta Blangiardo, Alberto Cassese }
+\author{ Alberto Cassese, Marta Blangiardo }
 
 \examples{
-data = simulation(n=500,GammaA=1,GammaB=1,r1=0.5,r2=0.8,DEfirst=300,DEsecond=200,DEcommon=100)
+data = simulation(n=500,GammaA=1,GammaB=1,
+r1=0.5,r2=0.8,DEfirst=300,DEsecond=200,
+DEcommon=100)
 
 ## The function is currently defined as
-function(n,GammaA,GammaB,epsilonM=0,epsilonSD=1,r1,r2,DEfirst,DEsecond,DEcommon){
+function(n,GammaA,GammaB,epsilonM=0,epsilonSD=1,
+r1,r2,DEfirst,DEsecond,DEcommon){
 
 FC1=c()
 FC2=c()
@@ -60,41 +64,43 @@ FC1[i] <- -delta[i] - epsilon1[i]*r1;
 FC2[i] <- -delta[i] - epsilon2[i]*r2
   }
 names[i] <- "DEcommon"
-  }
+}
 
 #Group 2 : DE in the first experiment
 for(i in (DEcommon+1):(DEfirst)){
 x=rbinom(1,1,0.5)
 if(x==1){
 FC1[i] <- delta[i] + epsilon1[i]*r1
-  }
+}
 if(x==0){
 FC1[i] <- -delta[i] - epsilon1[i]*r1
-  }
+}
 FC2[i] <- epsilon2[i]*r2
 names[i] <- "DEfirst"
-  }
+}
 
 #Group 3 : DE in the second experiment
-for(i in (DEfirst+1):(DEfirst+DEsecond-DEcommon)){
+for(i in (DEfirst+1):(DEfirst+DEsecond
+-DEcommon)){
 x=rbinom(1,1,0.5)
 FC1[i] <- epsilon1[i]*r1
 if(x==1){
 FC2[i] <- delta[i] + epsilon2[i]*r2
-  }
+}
 if(x==0){
 FC2[i] <- -delta[i] - epsilon2[i]*r2
-  }
+}
 names[i] <- "DEsecond"
 
-  }
+}
 
 #Group 4 : Not DE in Both experiments
-for(i in (DEfirst+DEsecond-DEcommon+1):(n)){
+for(i in (DEfirst+DEsecond-DEcommon+1):
+(n)){
 FC1[i] <- epsilon1[i]*r1
 FC2[i] <- epsilon2[i]*r2
 names[i] <- "Null"
-  }
+}
 
 ##############################################
 #Assign the Pvalues
@@ -105,9 +111,10 @@ Pval2 = c()
 for(i in 1:n){
 Pval1[i] <- 2*pnorm(-abs(FC1[i]/r1))
 Pval2[i] <- 2*pnorm(-abs(FC2[i]/r2))
-  }
+}
 
 ##############################################
-return(list(names=names,FC1=FC1,FC2=FC2,Pval=cbind(Pval1,Pval2)))
-  }
+return(list(names=names,FC1=FC1,FC2=FC2,
+Pval=cbind(Pval1,Pval2)))
+}
 }

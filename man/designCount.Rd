@@ -11,7 +11,7 @@ designCount(array, design)
   \item{array}{ \code{Data matrix} }
   \item{design}{ \code{Design matrix} }
 }
-\author{ Marta Blangiardo, Alberto Cassese }
+\author{ Alberto Cassese, Marta Blangiardo }
 \examples{
 
 ## The function is currently defined as

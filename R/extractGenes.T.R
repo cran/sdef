@@ -10,9 +10,8 @@ lists = dim(data)[2]
 
 
 #Decision rules:
-#1) Maximum for CI not including 1
 max.T = max(output.ratio$ratios)
-threshold.max = output.ratio$q[max(output.ratio$ratios)]
+threshold.max = output.ratio$q[output.ratio$ratios==max.T]
 
 #function Table
 table=function(threshold){
@@ -40,6 +39,11 @@ if(output.ratio$pvalue==FALSE){
 table.max <- 1-table.max
 }
 
+if(is.matrix(table.max)==FALSE){
+table.max=as.matrix(table.max)
+table.max=t(table.max)
+}
+
 table.max <- data.frame(Names=names.max,RankingStat = table.max)
 colnames(table.max)<-name
 
@@ -58,6 +62,10 @@ if(output.ratio$pvalue==FALSE){
 table.2 <- 1-table.2
 }
 
+if(is.matrix(table.2)==FALSE){
+table.2=as.matrix(table.2)
+table.2=t(table.2)
+}
 
 table.2 <- data.frame(Names=names.2,RankingStat = table.2)
 colnames(table.2)<-name
