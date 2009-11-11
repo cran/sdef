@@ -1,5 +1,5 @@
 ratio <-
-function(data,pvalue=TRUE,interval=0.01,name=NULL,dir=getwd(),dataname="dataratio"){
+function(data,pvalue=TRUE,interval=0.01,name="Distribution of T(q)",dir=getwd(),dataname="dataratio"){
 
 #Define how many lists for the comparison
 lists = ncol(data)
@@ -7,17 +7,6 @@ dim1=dim(data)[1]
 
 if(pvalue==FALSE){
 data=1-data;
-}
-
-main="("
-for(i in 1:(lists-1)){
-main=paste(main,"1,")
-}
-main=paste(main,"1)")
-
-
-if(length(name)==0){
-name=main
 }
 
 ID=seq(1,dim1)
@@ -36,7 +25,7 @@ temp[temp[,j]==TRUE,j]<-1
         int[i] <- sum(apply(temp,1,sum)==lists)
 }
 
-#Calculate the ratio for the number of observed genes/number of expected ones
+#Calculate the ratio for the number of observed features/number of expected ones
 expected = apply(L,1,prod)/(dim1)^(lists-1)
 ratios = matrix(0,l,1)
 
@@ -58,7 +47,9 @@ if(Tmax<1){cat("WARNING: the requested contrast is under-represented in the data
 ps.options(paper="a4",horizontal=TRUE)
 setwd(dir)
 ps.options(horizontal=FALSE)
-postscript(paste("Ratio",name,".ps"))
+postscript("Tq.ps")
+
+main="Distribution of T(q)"
 
 if(length(thresh.ratios[ratios>=2])>0){
 q2 = max(thresh.ratios[ratios>=2])
@@ -73,18 +64,19 @@ if(Tmax>1.1){
 axis(2, at = c(0,0.5,1,Tmax), labels = c(0,0.5,1,expression(T[max])), tick = TRUE,cex.axis=0.9)
 }
 if(qmax>0.1 & qmax<0.9){
-axis(1, at = c(0,qmax,1), labels = c(0,expression(q[max]),1), tick=TRUE,cex=0.9)
+axis(1, at = c(0,qmax,seq((qmax+0.1),1,0.2),1), labels = c(0,expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax<0.1){
-axis(1, at = c(qmax,1), labels = c(expression(q[max]),1), tick=TRUE,cex=0.9)
+axis(1, at = c(qmax,seq((qmax+0.1),1,0.2),1), labels = c(expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax>0.9 & qmax != 1){
-axis(1, at = c(0,qmax), labels = c(0,expression(q[max])), tick=TRUE,cex=0.9)
+axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),qmax), labels = c(0,seq(0.1,(qmax-0.1),0.2),expression(q[max])), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax==1){
-axis(1, at = c(0,1), labels = c(0,paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9)
+axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),1), labels = c(0,seq(0.1,(qmax-0.1),0.2),paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9,las=2)
 }
 axis(4, at = c(1,Tmax),labels = c(dim1,int[thresh.ratios==qmax]),tick=TRUE,cex=0.9)
+abline(h=Tmax,lty=3,cex=0.7)
 dev.off()
 }
 if(q2!=qmax){
@@ -98,19 +90,20 @@ axis(2, at = c(0,0.5,1,Tmax,T2), labels = c(0,0.5,1,expression(T[max]),expressio
 }
 
 if(qmax>0.1 & qmax<0.9){
-axis(1, at = c(0,qmax,q2,1), labels = c(0,expression(q[max]),expression(q[2]),1), tick=TRUE,cex=0.9)
+axis(1, at = c(0,qmax,q2,seq((qmax+0.1),1,0.2),1), labels = c(0,expression(q[max]),expression(q[2]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax<0.1){
-axis(1, at = c(qmax,q2,1), labels = c(expression(q[max]),expression(q[2]),1), tick=TRUE,cex=0.9)
+axis(1, at = c(qmax,q2,seq((q2+0.1),1,0.2),1), labels = c(expression(q[max]),expression(q[2]),seq((q2+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax>0.9 & qmax != 1){
-axis(1, at = c(0,qmax,q2), labels = c(0,expression(q[max]),expression(q[2])), tick=TRUE,cex=0.9)
+axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),qmax,q2), labels = c(0,seq(0.1,(qmax-0.1),0.2),expression(q[max]),expression(q[2])), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax==1){
-axis(1, at = c(0,q2,1), labels = c(0,expression(q[2]),paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9)
+axis(1, at = c(0,seq(0.1,1,0.2),q2,1), labels = c(0,seq(0.1,(qmax-0.1),0.2),expression(q[2]),paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9,las=2)
 }
 
 axis(4, at = c(1,T2,Tmax),labels = c(dim1,int[thresh.ratios==q2],int[thresh.ratios==qmax]),tick=TRUE,cex=0.9)
+abline(h=Tmax,lty=3,cex=0.7)
 dev.off()
 }
 }
@@ -126,23 +119,24 @@ if(Tmax>1.1){
 axis(2, at = c(0,0.5,1,Tmax), labels = c(0,0.5,1,expression(T[max])), tick = TRUE,cex.axis=0.9)
 }
 if(qmax>0.1 & qmax<0.9){
-axis(1, at = c(0,qmax,1), labels = c(0,expression(q[max]),1), tick=TRUE,cex=0.9)
+axis(1, at = c(0,qmax,seq((qmax+0.1),1,0.2),1), labels = c(0,expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax<0.1){
-axis(1, at = c(qmax,1), labels = c(expression(q[max]),1), tick=TRUE,cex=0.9)
+axis(1, at = c(qmax,seq((qmax+0.1),1,0.2),1), labels = c(expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax>0.9 & qmax != 1){
-axis(1, at = c(0,qmax), labels = c(0,expression(q[max])), tick=TRUE,cex=0.9)
+axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),qmax), labels = c(0,(qmax-0.1),expression(q[max])), tick=TRUE,cex=0.9,las=2)
 }
 if(qmax==1){
-axis(1, at = c(0,1), labels = c(0,paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9)
+axis(1, at = c(seq(0,1,0.2)), labels = c(seq(0,(qmax-0.1),0.2),paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9,las=2)
 }
 
 axis(4, at = c(1,Tmax),labels = c(dim1,int[thresh.ratios==qmax]),tick=TRUE,cex=0.9)
+abline(h=Tmax,lty=3,cex=0.7)
 dev.off() 
 }
 save(data,file = paste(dataname,".Rdata"))
-return(list(DE = L, ratios=ratios,q=thresh.ratios,Common=int,interval=interval,name=name,pvalue=pvalue,dataname=dataname))
+return(list(q=thresh.ratios,DE = L, ratios=ratios,Common=int,interval=interval,name=name,pvalue=pvalue,dataname=dataname))
 
 }
 

@@ -1,5 +1,5 @@
-extractGenes.T <-
-function(output.ratio,gene.names){
+extractFeatures.T <-
+function(output.ratio,feat.names){
 load(paste(output.ratio$dataname,".Rdata"))
 if(output.ratio$pvalue==FALSE){
 data = 1 - data
@@ -33,13 +33,13 @@ name=c(name,paste("List",as.character(i)))
 }
 
 table.max <- data[apply(temp,1,sum)==lists,]
-names.max <- gene.names[apply(temp,1,sum)==lists]
+names.max <- feat.names[apply(temp,1,sum)==lists]
 
 if(output.ratio$pvalue==FALSE){
 table.max <- 1-table.max
 }
 
-if(is.matrix(table.max)==FALSE){
+if(is.vector(table.max)==TRUE){
 table.max=as.matrix(table.max)
 table.max=t(table.max)
 }
@@ -47,34 +47,8 @@ table.max=t(table.max)
 table.max <- data.frame(Names=names.max,RankingStat = table.max)
 colnames(table.max)<-name
 
-if(length(output.ratio$q[output.ratio$ratios>=2])>0){
-
-#2) Rule 2
-threshold.2 = max(output.ratio$q[output.ratio$ratios>=2])
-
-#Table
-temp<-table(threshold.2)
-
-table.2 <- data[apply(temp,1,sum)==lists,]
-names.2 <- gene.names[apply(temp,1,sum)==lists]
-
-if(output.ratio$pvalue==FALSE){
-table.2 <- 1-table.2
-}
-
-if(is.matrix(table.2)==FALSE){
-table.2=as.matrix(table.2)
-table.2=t(table.2)
-}
-
-table.2 <- data.frame(Names=names.2,RankingStat = table.2)
-colnames(table.2)<-name
-
-return(list(max = table.max,rule2 = table.2))
-}
-if(length(output.ratio$q[output.ratio$ratios>=2])==0){
+write.csv(table.max,"featuresT.csv")
 
 return(list(max = table.max))
-}
 }
 
