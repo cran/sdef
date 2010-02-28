@@ -1,5 +1,5 @@
 ratio <-
-function(data,pvalue=TRUE,interval=0.01,name="Distribution of T(q)",dir=getwd(),dataname="dataratio"){
+function(data,pvalue=TRUE,interval=0.01,name="Distribution of T(h)",dir=getwd(),dataname="dataratio"){
 
 #Define how many lists for the comparison
 lists = ncol(data)
@@ -41,76 +41,20 @@ L = L[int>0,]
 int=int[int>0]
 
 Tmax = max(ratios)
-qmax = thresh.ratios[ratios==Tmax]
-if(length(qmax)>1){qmax=qmax[1]}
+hmax = thresh.ratios[ratios==Tmax]
+if(length(hmax)>1){hmax=hmax[1]}
 if(Tmax<1){cat("WARNING: the requested contrast is under-represented in the data (Tmax<1)\n")}
 ps.options(paper="a4",horizontal=TRUE)
 setwd(dir)
 ps.options(horizontal=FALSE)
-postscript("Tq.ps")
+postscript("Th.ps")
 
-main="Distribution of T(q)"
-
-if(length(thresh.ratios[ratios>=2])>0){
-q2 = max(thresh.ratios[ratios>=2])
-T2 = ratios[thresh.ratios==q2]
-if(q2==qmax){
+main="Distribution of T(h)"
+   
+par(omd=c(0.1,0.9,0,1))
 plot(thresh.ratios,ratios,type="l",
 ylab= "T",xlab="P-value",main=main,yaxt="n",xaxt="n",cex.main=0.7,cex.axis=1.2,ylim=c(0,(max(ratios,na.rm=TRUE)+sd(ratios,na.rm=TRUE))))
-if(Tmax<1.1){
-axis(2, at = c(0,0.5,Tmax), labels = c(0,0.5,expression(T[max])), tick = TRUE,cex.axis=0.9)
-}
-if(Tmax>1.1){
-axis(2, at = c(0,0.5,1,Tmax), labels = c(0,0.5,1,expression(T[max])), tick = TRUE,cex.axis=0.9)
-}
-if(qmax>0.1 & qmax<0.9){
-axis(1, at = c(0,qmax,seq((qmax+0.1),1,0.2),1), labels = c(0,expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
-}
-if(qmax<0.1){
-axis(1, at = c(qmax,seq((qmax+0.1),1,0.2),1), labels = c(expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
-}
-if(qmax>0.9 & qmax != 1){
-axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),qmax), labels = c(0,seq(0.1,(qmax-0.1),0.2),expression(q[max])), tick=TRUE,cex=0.9,las=2)
-}
-if(qmax==1){
-axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),1), labels = c(0,seq(0.1,(qmax-0.1),0.2),paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9,las=2)
-}
-axis(4, at = c(1,Tmax),labels = c(dim1,int[thresh.ratios==qmax]),tick=TRUE,cex=0.9)
-abline(h=Tmax,lty=3,cex=0.7)
-dev.off()
-}
-if(q2!=qmax){
-plot(thresh.ratios,ratios,type="l",
-ylab= "T",xlab="P-value",main=main,yaxt="n",xaxt="n",cex.main=0.7,cex.axis=1.2,ylim=c(0,(max(ratios,na.rm=TRUE)+sd(ratios,na.rm=TRUE))))
-if(Tmax<1.1){
-axis(2, at = c(0,0.5,Tmax,T2), labels = c(0,0.5,expression(T[max]),expression(T[2])), tick = TRUE,cex.axis=0.9)
-}
-if(Tmax>1.1){
-axis(2, at = c(0,0.5,1,Tmax,T2), labels = c(0,0.5,1,expression(T[max]),expression(T[2])), tick = TRUE,cex.axis=0.9)
-}
-
-if(qmax>0.1 & qmax<0.9){
-axis(1, at = c(0,qmax,q2,seq((qmax+0.1),1,0.2),1), labels = c(0,expression(q[max]),expression(q[2]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
-}
-if(qmax<0.1){
-axis(1, at = c(qmax,q2,seq((q2+0.1),1,0.2),1), labels = c(expression(q[max]),expression(q[2]),seq((q2+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
-}
-if(qmax>0.9 & qmax != 1){
-axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),qmax,q2), labels = c(0,seq(0.1,(qmax-0.1),0.2),expression(q[max]),expression(q[2])), tick=TRUE,cex=0.9,las=2)
-}
-if(qmax==1){
-axis(1, at = c(0,seq(0.1,1,0.2),q2,1), labels = c(0,seq(0.1,(qmax-0.1),0.2),expression(q[2]),paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9,las=2)
-}
-
-axis(4, at = c(1,T2,Tmax),labels = c(dim1,int[thresh.ratios==q2],int[thresh.ratios==qmax]),tick=TRUE,cex=0.9)
-abline(h=Tmax,lty=3,cex=0.7)
-dev.off()
-}
-}
-    
-if(length(thresh.ratios[ratios>=2])==0){
-plot(thresh.ratios,ratios,type="l",
-ylab= "T",xlab="P-value",main=main,yaxt="n",xaxt="n",cex.main=0.7,cex.axis=1.2,ylim=c(0,(max(ratios,na.rm=TRUE)+sd(ratios,na.rm=TRUE))))
+mtext("number of common genes",side=4,line=2,adj=0.5)
 
 if(Tmax<1.1){
 axis(2, at = c(0,0.5,Tmax), labels = c(0,0.5,expression(T[max])), tick = TRUE,cex.axis=0.9)
@@ -118,25 +62,71 @@ axis(2, at = c(0,0.5,Tmax), labels = c(0,0.5,expression(T[max])), tick = TRUE,ce
 if(Tmax>1.1){
 axis(2, at = c(0,0.5,1,Tmax), labels = c(0,0.5,1,expression(T[max])), tick = TRUE,cex.axis=0.9)
 }
-if(qmax>0.1 & qmax<0.9){
-axis(1, at = c(0,qmax,seq((qmax+0.1),1,0.2),1), labels = c(0,expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
+if(hmax>0.1 & hmax<0.9){
+axis(1, at = c(0,hmax,seq((hmax+0.1),1,0.2),1), labels = c(0,expression(h[max]),seq((hmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
-if(qmax<0.1){
-axis(1, at = c(qmax,seq((qmax+0.1),1,0.2),1), labels = c(expression(q[max]),seq((qmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
+if(hmax<0.1){
+axis(1, at = c(hmax,seq((hmax+0.1),1,0.2),1), labels = c(expression(h[max]),seq((hmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
 }
-if(qmax>0.9 & qmax != 1){
-axis(1, at = c(0,seq(0.1,(qmax-0.1),0.2),qmax), labels = c(0,(qmax-0.1),expression(q[max])), tick=TRUE,cex=0.9,las=2)
+if(hmax>0.9 & hmax != 1){
+axis(1, at = c(0,seq(0.1,(hmax-0.1),0.2),hmax), labels = c(0,(hmax-0.1),expression(h[max])), tick=TRUE,cex=0.9,las=2)
 }
-if(qmax==1){
-axis(1, at = c(seq(0,1,0.2)), labels = c(seq(0,(qmax-0.1),0.2),paste(expression(q[max]),"=1")), tick=TRUE,cex=0.9,las=2)
+if(hmax==1){
+axis(1, at = c(seq(0,1,0.2)), labels = c(seq(0,(hmax-0.1),0.2),paste(expression(h[max]),"=1")), tick=TRUE,cex=0.9,las=2)
 }
 
-axis(4, at = c(1,Tmax),labels = c(dim1,int[thresh.ratios==qmax]),tick=TRUE,cex=0.9)
+axis(4, at = c(1,Tmax),labels = c(dim1,int[thresh.ratios==hmax]),tick=TRUE,cex=0.9)
 abline(h=Tmax,lty=3,cex=0.7)
 dev.off() 
-}
+
 save(data,file = paste(dataname,".Rdata"))
-return(list(q=thresh.ratios,DE = L, ratios=ratios,Common=int,interval=interval,name=name,pvalue=pvalue,dataname=dataname))
+
+########
+    
+par(omd=c(0.1,0.9,0,1))
+plot(thresh.ratios,ratios,type="l",
+ylab= "T",xlab="P-value",main=main,yaxt="n",xaxt="n",cex.main=0.7,cex.axis=1.2,ylim=c(0,(max(ratios,na.rm=TRUE)+sd(ratios,na.rm=TRUE))))
+mtext("number of common genes",side=4,line=2,adj=0.5)
+
+if(Tmax<1.1){
+axis(2, at = c(0,0.5,Tmax), labels = c(0,0.5,expression(T[max])), tick = TRUE,cex.axis=0.9)
+}
+if(Tmax>1.1){
+axis(2, at = c(0,0.5,1,Tmax), labels = c(0,0.5,1,expression(T[max])), tick = TRUE,cex.axis=0.9)
+}
+if(hmax>0.1 & hmax<0.9){
+axis(1, at = c(0,hmax,seq((hmax+0.1),1,0.2),1), labels = c(0,expression(h[max]),seq((hmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
+}
+if(hmax<0.1){
+axis(1, at = c(hmax,seq((hmax+0.1),1,0.2),1), labels = c(expression(h[max]),seq((hmax+0.1),1,0.2),1), tick=TRUE,cex=0.9,las=2)
+}
+if(hmax>0.9 & hmax != 1){
+axis(1, at = c(0,seq(0.1,(hmax-0.1),0.2),hmax), labels = c(0,(hmax-0.1),expression(h[max])), tick=TRUE,cex=0.9,las=2)
+}
+if(hmax==1){
+axis(1, at = c(seq(0,1,0.2)), labels = c(seq(0,(hmax-0.1),0.2),paste(expression(h[max]),"=1")), tick=TRUE,cex=0.9,las=2)
+}
+
+axis(4, at = c(1,Tmax),labels = c(dim1,int[thresh.ratios==hmax]),tick=TRUE,cex=0.9)
+abline(h=Tmax,lty=3,cex=0.7) 
+
+########
+col.name=NULL
+for(i in 1:lists){
+temp=paste("list",i)
+col.name=c(col.name,temp)
+}
+
+colnames(L)<-(col.name)
+rownames(L)<-(thresh.ratios)
+ratios=as.matrix(ratios)
+rownames(ratios)<-(thresh.ratios)
+colnames(ratios)<-"ratio"
+int=as.matrix(int)
+rownames(int)<-(thresh.ratios)
+colnames(int)<-"Genes in common"
+
+return(list(h=thresh.ratios,DE = L, ratios=ratios,Common=int,interval=interval,name=name,pvalue=pvalue,dataname=dataname))
 
 }
 

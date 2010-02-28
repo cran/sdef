@@ -1,5 +1,5 @@
 \name{simulation}
-\Rdversion{1.3}
+\Rdversion{1.4}
 \alias{simulation}
 \title{ Simulate p-values for two related experiments}
 \description{

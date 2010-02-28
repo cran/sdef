@@ -1,5 +1,5 @@
 \name{Liver.Muscle}
-\Rdversion{1.3}
+\Rdversion{1.4}
 \alias{Liver.Muscle}
 \docType{data}
 \title{
@@ -20,18 +20,18 @@ The format is: a matrix with 2912 rows and two columns. For each gene (row) it r
 Lan H, Rabaglia ME, Stoehr JP, Nadler ST et al. Gene expression profiles of non diabetic and diabetic obese mice suggest a role of hepatic lipogenic capacity in diabetes susceptibility. Diabetes 2003 Mar;52(3):688-700.
 }
 \examples{
-data(Liver.Muscle)
-Tq<- ratio(data=Liver.Muscle)
+#data(Liver.Muscle)
+#Th<- ratio(data=Liver.Muscle)
 
-Rq<- baymod(iter=100,output.ratio=Tq)
+#Rh<- baymod(iter=100,output.ratio=Th)
 
-MC<- Tmc(iter=100,output.ratio=Tq)
+#MC<- Tmc(iter=100,output.ratio=Th)
 
 #The gene names are can be obtained using the command dimnames:
-feat.names = dimnames(Liver.Muscle)[[1]]
-feat.lists <- extractFeatures.R(output.ratio=Tq,output.bay=Rq,feat.names=feat.names,q=NULL)
-feat.lists.T <- extractFeatures.T(output.ratio=Tq,feat.names=feat.names)
+#feat.names = dimnames(Liver.Muscle)[[1]]
+#feat.lists <- extractFeatures.R(output.ratio=Th,output.bay=Rh,feat.names=feat.names,h=NULL)
+#feat.lists.T <- extractFeatures.T(output.ratio=Th,feat.names=feat.names)
 
-output.table <- createTable(output.ratio=Tq,output.bay=Rq)
+#output.table <- createTable(output.ratio=Th,output.bay=Rh)
 
 }

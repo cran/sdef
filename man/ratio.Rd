@@ -1,13 +1,13 @@
 \name{ratio}
-\Rdversion{1.3}
+\Rdversion{1.4}
 \alias{ratio}
-\title{Ratio Tq between the observed features in common and the expected ones}
+\title{Ratio Th between the observed features in common and the expected ones}
 \description{
-The function for each experiment calculates the ratio T(q) for each threshold q, using the list of p-values or the other measure used in the experiment to rank the features, (e.g. posterior probability, correlation).
+The function for each experiment calculates the ratio T(h) for each threshold h, using the list of p-values or the other measure used in the experiment to rank the features, (e.g. posterior probability, correlation).
 }
 \usage{
 ratio(data, pvalue = TRUE, interval = 0.01,
-name ="Distribution of T(q)",dir = getwd(),
+name ="Distribution of T(h)",dir = getwd(),
 dataname = "dataratio")
 }
 \arguments{
@@ -19,14 +19,14 @@ dataname = "dataratio")
   \item{dataname}{ \code{The name of the file containing the data (Pvalue)} }
 }
 \details{
-This function calculates the ratio T(q) of observed number of features in common between the lists vs the expected number under the hypothesis of independence for each threshold q. The expected numbers are calculated as the product among the marginals divided by \eqn{(numbers of features)^(number of lists-1)}. T(qmax) identifies the maximum of the statistic T(q) and it is shown on the plot. 
+This function calculates the ratio T(h) of observed number of features in common between the lists vs the expected number under the hypothesis of independence for each threshold h. The expected numbers are calculated as the product among the marginals divided by \eqn{(numbers of features)^(number of lists-1)}. T(hmax) identifies the maximum of the statistic T(h) and it is shown on the plot. 
 }
 \value{
-Returns a plot with the distribution of T(q) showing where T(qmax) and qmax are located. It returns also an object of class list with the ratio, the thresholds and other attributes. In particular:
-  \item{q }{Threshold corresponding to T(q) values}
+Returns a plot with the distribution of T(h) showing where T(hmax) and hmax are located. The same plot is also saved in the directory specified by the user. It returns also an object of class list with the ratio, the thresholds and other attributes. In particular:
+  \item{h }{Threshold corresponding to T(h) values}
   \item{DE }{Differentially expressed features in each experiment}
-  \item{ratios }{Vector or T(q) values for each threshold}
-  \item{Common }{Features in common corresponding to the T(q) values}
+  \item{ratios }{Vector or T(h) values for each threshold}
+  \item{Common }{Features in common corresponding to the T(h) values}
   \item{interval }{Interval on the p-value scale defined by the user (default is 0.01)}
   \item{name }{Names to be used in the plots (defined by the user)}
   \item{pvalue }{Logical: TRUE if the measures used for the analysis are p-value, FALSE if they are posterior probabilities}
@@ -40,6 +40,6 @@ M.Blangiardo and S.Richardson (2007) Statistical tools for synthesizing lists of
 \examples{
 data = simulation(n=500,GammaA=1,GammaB=1,r1=0.5,r2=0.8,
 DEfirst=300,DEsecond=200,DEcommon=100)
-Tq<- ratio(data=data$Pval)
+Th<- ratio(data=data$Pval)
 
 }

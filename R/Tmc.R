@@ -25,7 +25,7 @@ sample[,j] = sample(data[,j])
 data1[,j] = sample[,j]
 }
     
-threshold = output.ratio$q
+threshold = output.ratio$h
 for(i in 1:l){
 temp = data1<=threshold[i]
 for(j in 1:lists){
@@ -54,18 +54,36 @@ ID=seq(1,iter)
 p=length(ID[Tmax.null>=Tmax])
 pvalue<- p/iter
 
-main="Distribution of T(q_max) under independence"
-
-postscript("MC p-value.ps")
+#########
 XX=hist(Tmax.null,plot=FALSE)
-    hist(Tmax.null, main = "", xlab = "T", ylab = "", xaxt = "n", 
-        cex.main = 0.9, xlim = c(min(Tmax.null), max(c(Tmax, 
+    hist(Tmax.null,main=expression(paste("Distribution of ", T(h[max])," under independence")), xlab = "T", ylab = "", xaxt = "n", 
+        cex.main = 0.7, xlim = c(min(Tmax.null), max(c(Tmax, 
             max(Tmax.null)))), yaxt = "n", cex.axis = 0.9)
     axis(1, at = seq(min(Tmax.null), max(c(Tmax, max(Tmax.null))), 
         length.out = 10), labels = round(seq(min(Tmax.null), 
         max(c(Tmax, max(Tmax.null))), length.out = 10), 2))
 if(pvalue>0){
-legend(x=max(c(Tmax,max(Tmax.null)))-min(Tmax.null)/2,y=dim1/100,legend=paste("P value =",pvalue),bty="n",cex=0.9)
+legend(x=XX$breaks[length(XX$breaks)/2],y=max(XX$counts)/1.5,legend=paste("P value =",pvalue),bty="n",cex=0.9)
+abline(v=Tmax,lty=2)
+}
+if(pvalue==0){
+        legend(x = XX$breaks[length(XX$breaks)/2], 
+            y = max(XX$counts)/1.5, legend = paste("P value <", 1/iter), 
+            bty = "n", cex = 0.9)
+        abline(v = Tmax, lty = 2)
+}
+#########
+
+postscript("MC p-value.ps")
+XX=hist(Tmax.null,plot=FALSE)
+    hist(Tmax.null,main=expression(paste("Distribution of ", T(h[max])," under independence")),xlab = "T", ylab = "", xaxt = "n", 
+        cex.main = 0.7, xlim = c(min(Tmax.null), max(c(Tmax, 
+            max(Tmax.null)))), yaxt = "n", cex.axis = 0.9)
+    axis(1, at = seq(min(Tmax.null), max(c(Tmax, max(Tmax.null))), 
+        length.out = 10), labels = round(seq(min(Tmax.null), 
+        max(c(Tmax, max(Tmax.null))), length.out = 10), 2))
+if(pvalue>0){
+legend(x=XX$breaks[length(XX$breaks)/2],y=max(XX$counts)/1.5,legend=paste("P value =",pvalue),bty="n",cex=0.9)
 abline(v=Tmax,lty=2)
 dev.off()
 return(list(pvalue=pvalue))
@@ -78,4 +96,6 @@ if(pvalue==0){
 dev.off()
 return(noquote(paste("pvalue < ",1/iter)))
 }
+
 }
+

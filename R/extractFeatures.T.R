@@ -11,7 +11,7 @@ lists = dim(data)[2]
 
 #Decision rules:
 max.T = max(output.ratio$ratios)
-threshold.max = output.ratio$q[output.ratio$ratios==max.T]
+threshold.max = output.ratio$h[output.ratio$ratios==max.T]
 
 #function Table
 table=function(threshold){
