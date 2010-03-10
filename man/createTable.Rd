@@ -1,5 +1,5 @@
 \name{createTable}
-\Rdversion{1.4}
+\Rdversion{1.5}
 \alias{createTable}
 \title{Function to create an output table}
 \description{

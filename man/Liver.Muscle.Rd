@@ -1,5 +1,5 @@
 \name{Liver.Muscle}
-\Rdversion{1.4}
+\Rdversion{1.5}
 \alias{Liver.Muscle}
 \docType{data}
 \title{
@@ -27,7 +27,7 @@ Lan H, Rabaglia ME, Stoehr JP, Nadler ST et al. Gene expression profiles of non 
 
 #MC<- Tmc(iter=100,output.ratio=Th)
 
-#The gene names are can be obtained using the command dimnames:
+#The gene names can be obtained using the command dimnames:
 #feat.names = dimnames(Liver.Muscle)[[1]]
 #feat.lists <- extractFeatures.R(output.ratio=Th,output.bay=Rh,feat.names=feat.names,h=NULL)
 #feat.lists.T <- extractFeatures.T(output.ratio=Th,feat.names=feat.names)

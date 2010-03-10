@@ -1,5 +1,5 @@
 \name{baymod}
-\Rdversion{1.4}
+\Rdversion{1.5}
 \alias{baymod}
 \title{Bayesian model for the ratio of observed to expected probability of features to be in common}
 \description{

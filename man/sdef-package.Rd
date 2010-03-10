@@ -1,5 +1,5 @@
 \name{sdef-package}
-\Rdversion{1.4}
+\Rdversion{1.5}
 \alias{sdef-package}
 \alias{sdef}
 \docType{package}
@@ -12,7 +12,7 @@ The package performs two tests to evaluate if the experiments are associated and
 Package: \tab sdef\cr
 Type: \tab Package\cr
 Version: \tab 1.4\cr
-Date: \tab 2010-02-28\cr
+Date: \tab 2010-03-10\cr
 License: \tab GPL-2\cr
 Lazyload: \tab yes\cr
 }

@@ -1,5 +1,5 @@
 \name{Example3Lists}
-\Rdversion{1.4}
+\Rdversion{1.5}
 \alias{Example3Lists}
 \docType{data}
 \title{
@@ -29,7 +29,7 @@ Developmental Cell 2004, 6:791-800
 
 #MC<- Tmc(iter=100,output.ratio=Th)
 
-#The gene names are can be obtained using the command dimnames:
+#The gene names can be obtained using the command dimnames:
 #feat.names = dimnames(Example3Lists)[[1]]
 #feat.lists <- extractFeatures.R(output.ratio=Th,output.bay=Rh,feat.names=feat.names,h=NULL)
 #feat.lists.T <- extractFeatures.T(output.ratio=Th,feat.names=feat.names)

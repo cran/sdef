@@ -36,7 +36,7 @@ if(output.ratio$pvalue==FALSE){
         table.h[[r]] <- 1-table.h[[r]]
         }
 
-table.h[[r]] <- data.frame(Names=names.h,RankingStat = table.h[[r]])
+table.h[[r]] <- data.frame(Names=names.h,List = table.h[[r]])
 
 names(table.h)[[r]] <- paste("h=",h[r]) 
 }
@@ -63,7 +63,7 @@ temp<-table(threshold.max)
 
 name="Names"
 for(i in 1:ncol(data)){
-name=c(name,paste("List",as.character(i)))
+name=c(name,paste("List.",colnames(data)[i],sep=""))
 }
 
 table.max <- data[apply(temp,1,sum)==lists,]
@@ -104,7 +104,7 @@ table.2=t(table.2)
 }
 
 
-table.2 <- data.frame(Names=names.2,RankingStat = table.2)
+table.2 <- data.frame(Names=names.2,List = table.2)
 colnames(table.2)<-name
 
 if(is.null(h)){
@@ -126,7 +126,7 @@ if(output.ratio$pvalue==FALSE){
         table.h[[r]] <- 1-table.h[[r]]
         }
 
-table.h[[r]] <- data.frame(Names=names.h,RankingStat = table.h[[r]])
+table.h[[r]] <- data.frame(Names=names.h,List = table.h[[r]])
 
 names(table.h)[[r]] <- paste("h=",h[r]) 
 }
@@ -156,11 +156,11 @@ temp <- table(h[r])
 table.h[[r]] <- data[apply(temp,1,sum)==lists,]
 names.h <- feat.names[apply(temp,1,sum)==lists]
 if(output.ratio$pvalue==FALSE){
-table.h[[r]] <- data.frame(Names=names.h,RankingStat = 1-table.h[[r]])
+table.h[[r]] <- data.frame(Names=names.h,List = 1-table.h[[r]])
 }
 
 if(output.ratio$pvalue==TRUE){
-table.h[[r]] <- data.frame(Names=names.h,RankingStat = table.h[[r]])
+table.h[[r]] <- data.frame(Names=names.h,List = table.h[[r]])
 }
 names(table.h)[[r]] <- paste("h=",h[r]) 
 }

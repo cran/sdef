@@ -1,5 +1,5 @@
 \name{ratio}
-\Rdversion{1.4}
+\Rdversion{1.5}
 \alias{ratio}
 \title{Ratio Th between the observed features in common and the expected ones}
 \description{
