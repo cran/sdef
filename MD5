@@ -1,5 +1,5 @@
-8f8816311693ae121a646def631479f2 *DESCRIPTION
-9fdfeb11f7ddba6f3aab9aaa6b1ac5dd *NAMESPACE
+dbf10c16935003dae4645217187e48f5 *DESCRIPTION
+6f370420a69dde9e71a576d7c6a7a05c *NAMESPACE
 6e554e1c054405b12a73842f83d43f44 *R/Tmc.R
 f589a7be2821ff352ef0396c5588d7cc *R/baymod.R
 022f7f24c444bf03f6fbf9c453f9a8c0 *R/createTable.R
@@ -14,7 +14,7 @@ ac6e44ddb256ed61f27a258482520086 *data/Example3Lists.rda
 eff4ad455207ff50984bdd090350be45 *data/Liver.Muscle.rda
 138e6536b740ae357997c825f5dfcedf *man/Example3Lists.Rd
 1ede66f5d558605d4378129086ee11bd *man/Liver.Muscle.Rd
-850064f8b803e9b56c3159698351c8ff *man/Tmc.Rd
+1a991fa686c1f41c2b5dada069a32e23 *man/Tmc.Rd
 26a6aa8bb68b593fea78cffd1d78ddaa *man/baymod.Rd
 315e3af53dc2f57c0dce733a2173b0dd *man/createTable.Rd
 4ca945ebde0cf0a9d5f7a53380d3974b *man/designCount.Rd

@@ -1,5 +1,6 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
+importFrom("graphics", "abline", "axis", "hist", "legend", "lines", "mtext", "par", "plot", "points")
+importFrom("grDevices", "dev.off", "postscript", "ps.options")
+importFrom("stats", "pnorm", "rbinom", "rgamma", "rnorm", "sd")
+importFrom("utils", "write.csv")
 
-# Export all names
 exportPattern(".")
