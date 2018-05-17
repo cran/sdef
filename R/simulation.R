@@ -69,4 +69,3 @@ Pval2[i] <- 2*pnorm(-abs(FC2[i]/r2))
 ##############################################
 return(list(names=names,FC1=FC1,FC2=FC2,Pval=cbind(Pval1,Pval2)))
 }
-

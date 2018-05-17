@@ -51,4 +51,3 @@ write.csv(table.max,"featuresT.csv")
 
 return(list(max = table.max))
 }
-

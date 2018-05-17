@@ -1,25 +1,22 @@
 \name{sdef-package}
-\Rdversion{1.5}
 \alias{sdef-package}
 \alias{sdef}
 \docType{package}
-\title{Synthesizing List of Differentially Expressed Features}
+\title{
+\packageTitle{sdef}
+}
 \description{
-The package performs two tests to evaluate if the experiments are associated and returns a list of interesting features common to all the experiments.
+\packageDescription{sdef}
 }
 \details{
-\tabular{ll}{
-Package: \tab sdef\cr
-Type: \tab Package\cr
-Version: \tab 1.4\cr
-Date: \tab 2010-03-10\cr
-License: \tab GPL-2\cr
-Lazyload: \tab yes\cr
-}
+
+The DESCRIPTION file:
+\packageDESCRIPTION{sdef}
+\packageIndices{sdef}
+
 }
 \author{
-Alberto Cassese, Marta Blangiardo
+\packageAuthor{sdef}
 
-Maintainer: Alberto Cassese <fratucster@gmail.com>
-
+Maintainer: \packageMaintainer{sdef}
 }

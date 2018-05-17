@@ -1,5 +1,4 @@
 \name{Example3Lists}
-\Rdversion{1.5}
 \alias{Example3Lists}
 \docType{data}
 \title{

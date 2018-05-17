@@ -127,4 +127,3 @@ return(list(maximum.R=maximum,maximum.T,User=ruleh))
 
 }
 }
-

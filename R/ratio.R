@@ -129,4 +129,3 @@ colnames(int)<-"Genes in common"
 return(list(h=thresh.ratios,DE = L, ratios=ratios,Common=int,interval=interval,name=name,pvalue=pvalue,dataname=dataname))
 
 }
-

@@ -1,5 +1,4 @@
 \name{Tmc}
-\Rdversion{1.5}
 \alias{Tmc}
 \title{Empirical null distribution of max T(h)}
 \description{

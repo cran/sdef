@@ -213,4 +213,3 @@ rownames(quantile)<-output.ratio$h
 
 return(quantile=quantile)
 }
-

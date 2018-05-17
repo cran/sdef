@@ -3,4 +3,4 @@ importFrom("grDevices", "dev.off", "postscript", "ps.options")
 importFrom("stats", "pnorm", "rbinom", "rgamma", "rnorm", "sd")
 importFrom("utils", "write.csv")
 
-exportPattern(".")
+exportPattern("^[[:alpha:]]+")

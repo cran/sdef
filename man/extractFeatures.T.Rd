@@ -1,5 +1,4 @@
 \name{extractFeatures.T}
-\Rdversion{1.5}
 \alias{extractFeatures.T}
 \title{Extracting the lists of features of interest}
 \description{

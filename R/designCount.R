@@ -9,4 +9,3 @@ res[i-1] <- sum(apply(array,1,sum1intersects,design[i,]))
 }
 return(res)
 }
-

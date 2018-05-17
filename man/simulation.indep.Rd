@@ -1,5 +1,4 @@
 \name{simulation.indep}
-\Rdversion{1.5}
 \alias{simulation.indep}
 \title{ Simulate p-values for two indipendent experiments }
 \description{

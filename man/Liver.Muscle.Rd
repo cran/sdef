@@ -1,5 +1,4 @@
 \name{Liver.Muscle}
-\Rdversion{1.5}
 \alias{Liver.Muscle}
 \docType{data}
 \title{

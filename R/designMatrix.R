@@ -14,4 +14,3 @@ x[,lists-k+1] = as.vector(settings)
 }
 return(x)
 }
-

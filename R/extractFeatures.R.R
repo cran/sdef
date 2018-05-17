@@ -174,4 +174,3 @@ return(list(max = table.max,User = table.h))
 
 }
 }
-
